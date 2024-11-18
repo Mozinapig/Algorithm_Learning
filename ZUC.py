@@ -47,7 +47,10 @@ class ZuChongzhiStreamCipher:
         :return: 密文，作为二进制字符串
         """
         keystream = self.generate_keystream(self.iv, len(plaintext))
-        ciphertext = [int(pt_bit) ^ ks_bit for pt_bit, ks_bit in zip(plaintext, keystream)]
+        ciphertext = [
+            int(pt_bit) ^ ks_bit
+            for pt_bit, ks_bit in zip(plaintext, keystream)
+        ]
         return ''.join(map(str, ciphertext))
 
     def decrypt(self, ciphertext):
@@ -57,8 +60,12 @@ class ZuChongzhiStreamCipher:
         :return: 解密后的明文，作为二进制字符串
         """
         keystream = self.generate_keystream(self.iv, len(ciphertext))
-        decrypted = [int(ct_bit) ^ ks_bit for ct_bit, ks_bit in zip(ciphertext, keystream)]
+        decrypted = [
+            int(ct_bit) ^ ks_bit
+            for ct_bit, ks_bit in zip(ciphertext, keystream)
+        ]
         return ''.join(map(str, decrypted))  # 返回解密后的明文
+
 
 if __name__ == "__main__":
     # 示例用法：
